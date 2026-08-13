@@ -28,16 +28,20 @@
             margin-bottom: 30px;
             color: #eeeeee;
         }
-        a {
+        /* تصميم الزرار */
+        button {
             padding: 12px 25px;
             background-color: #00adb5;
             color: #121212;
-            text-decoration: none;
+            font-size: 1rem;
             font-weight: bold;
+            border: none;
             border-radius: 8px;
+            cursor: pointer;
             transition: background-color 0.3s ease, transform 0.2s ease;
+            display: none; /* مخفي افتراضياً لحد ما نتأكد إن فيه هيستوري */
         }
-        a:hover {
+        button:hover {
             background-color: #007a80;
             transform: scale(1.05);
         }
@@ -46,6 +50,17 @@
 <body>
     <h1>404</h1>
     <p>Oops! The page you're looking for disappeared into the void.</p>
-    <a href="https://ahm3dramad3n.github.io/">Return to Home</a>
+    
+    <!-- زرار الرجوع -->
+    <button id="backBtn" onclick="window.history.back()">Go Back</button>
+
+    <script>
+        // فحص لو في صفحات سابقة في المتصفح عشان نرجع ليها
+        // بنستخدم document.referrer للتأكد إن المستخدم جاي من لينك، 
+        // أو history.length > 1 للتأكد إن المتصفح مسجل خطوات سابقة
+        if (window.history.length > 1 || document.referrer !== "") {
+            document.getElementById('backBtn').style.display = 'inline-block';
+        }
+    </script>
 </body>
 </html>
